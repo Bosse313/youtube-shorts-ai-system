@@ -1,21 +1,21 @@
 # 🎬 YouTube Shorts AI System
 
-Ein lokales Starter-Projekt für ein KI-gestütztes YouTube-Shorts-System mit:
+Ein lokales, transparentes Starter-Projekt für ein KI-gestütztes YouTube-Shorts-System mit:
 - Trend-Analyse
 - automatischer Video-Idee und Script-Erzeugung
 - 3D-Workflow-Visualisierung
-- manuelle Freigabe vor dem Upload
+- manueller Freigabe vor dem Upload
 - vollständiger Kontrolle über jeden Schritt
 
 ## Projektziel
 
-Dieses Projekt ist bewusst als transparente, kontrollierbare Grundversion gebaut. Du bekommst nicht nur ein "Black-Box"-System, sondern ein Dashboard, in dem du jede Phase nachvollziehen, prüfen und bei Bedarf anpassen kannst.
+Dieses Projekt ist bewusst als kontrollierbare Grundversion gebaut. Du bekommst ein Dashboard, in dem du jede Phase nachvollziehen, prüfen und bei Bedarf anpassen kannst. Es ist kein Black-Box-System, sondern ein durchsichtiger Workflow.
 
 ## Kernprinzip
 
-- Das System schaut sich Trends an und erkennt Muster
-- Basierend auf einem Trend wird ein Video-Konzept erstellt
-- Ein Script und eine Stimme werden vorbereitet
+- Das System erkennt Trends und Muster
+- Aus einem Trend wird ein Video-Konzept erstellt
+- Ein Script und eine Stimmrichtung werden vorbereitet
 - Der Workflow wird in einer 3D-Ansicht sichtbar gemacht
 - Du prüfst alles und genehmigst erst dann den Upload
 
@@ -24,23 +24,25 @@ Dieses Projekt ist bewusst als transparente, kontrollierbare Grundversion gebaut
 ```text
 youtube-shorts-ai-system/
 ├── backend/
+│   ├── __init__.py
 │   ├── main.py
 │   ├── trending_analyzer.py
 │   └── video_generator.py
-├── frontend/
+├��─ frontend/
 │   ├── index.html
 │   └── workflow3d.html
 ├── .env.example
 ├── README.md
 ├── requirements.txt
-└── start.sh
+├── start.sh
+└── .venv/   # wird lokal beim Start erzeugt
 ```
 
 ## Voraussetzungen
 
 - Python 3.10+
 - Git
-- Visual Studio Code (optional, aber empfohlen)
+- optional: Visual Studio Code
 
 ## Installation
 
@@ -54,7 +56,7 @@ cd youtube-shorts-ai-system
 2. Abhängigkeiten installieren
 
 ```bash
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
@@ -71,17 +73,17 @@ cp .env.example .env
 bash start.sh
 ```
 
-Dann öffnest du im Browser:
+Danach öffnest du im Browser:
 - http://localhost:5000
 - http://localhost:5000/workflow3d
 
 ## So funktioniert das System
 
 ### 1) Trend-Analyse
-Das System liefert Beispiel-Trends, die du mit deinen eigenen aktuellen Nischen, Hashtags oder Ideen erweitern kannst.
+Das System liefert Beispiel-Trends, die du mit deinen eigenen Ideen, Nischen und Hashtags erweitern kannst.
 
 ### 2) Workflow-Erzeugen
-Aus einem ausgewählten Trend wird automatisch ein Video-Plan erzeugt, inklusive:
+Aus einem gewählten Trend wird automatisch ein Video-Plan erzeugt, inklusive:
 - Titel
 - Hook
 - Script
@@ -91,7 +93,7 @@ Aus einem ausgewählten Trend wird automatisch ein Video-Plan erzeugt, inklusive
 - Freigabe-Status
 
 ### 3) 3D-Visualisierung
-Auf der 3D-Seite siehst du die einzelnen Zustände des Workflows als Karten, die in einer räumlichen Darstellung angezeigt werden.
+Auf der 3D-Seite siehst du die einzelnen Zustände des Workflows als visuelle Karten in einer räumlichen Darstellung.
 
 ### 4) Menschliche Kontrolle
 Du hast volle Kontrolle:
@@ -102,18 +104,18 @@ Du hast volle Kontrolle:
 
 ## Wichtige Hinweise
 
-- Dies ist ein lokaler Starter-Workflow, keine komplette KI-Produktionspipeline mit echten API-Uploads
-- Für echte Videos müsstest du später echte APIs wie OpenAI, ElevenLabs, Runway oder YouTube verbinden
-- Du kannst dieses Projekt nach Bedarf erweitern und genau dort steuern, wo du Kontrolle brauchst
+- Das ist ein lokaler Starter-Workflow, keine vollständig automatisierte KI-Produktionspipeline
+- Für echte Videoproduktionen brauchst du später echte APIs wie OpenAI, ElevenLabs, Runway, Pika oder YouTube
+- Die Grundversion ist bewusst transparent und kontrollierbar gebaut
 
 ## Nächste Erweiterungen
 
 - echte OpenAI-Integration
 - echte ElevenLabs-TTS-Integration
-- echte Video-Generierung per Runway/Pika
+- echte Video-Generierung via Runway/Pika
 - echte YouTube-Upload-API
 - Vorschau-Funktion mit FFmpeg
-- automatische Scheduler-Tasks
+- automatischer Scheduler
 
 ## Datenschutz und Kontrolle
 
@@ -121,8 +123,8 @@ Das System ist bewusst so aufgebaut, dass du in jedem Schritt die Transparenz be
 
 ---
 
-Wenn du möchtest, kann ich als Nächstes eine zweite Stufe bauen:
+Wenn du möchtest, kann ich als Nächstes die nächste Stufe bauen:
 - echte OpenAI-API-Integration
 - echte TTS-Integration
 - echte YouTube-Upload-Funktionen
-- ein größeres Dashboard mit Automatisierung und Filterung
+- ein größeres Dashboard mit Logs und Review-Funktion

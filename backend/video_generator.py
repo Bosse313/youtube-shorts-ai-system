@@ -1,63 +1,59 @@
+from __future__ import annotations
+
+import uuid
 from datetime import datetime
+from typing import Any, Dict
 
 
-def get_trends():
-    return [
-        {
-            "id": "brainrot-001",
-            "title": "AI-Chatbot wird zum Lebensberater",
-            "niche": "brainrot",
-            "hook": "Wenn dein Chef dich im Chatbot-Design findet",
-            "why_now": "Humoristische Alltagsszenarien mit Tech-Referenz performen stark.",
-            "format": "3-6 Sekunden Hook + schnelle Wiederholungen",
-            "tone": "absurd, witzig, schnell",
-            "trend_score": 94,
-        },
-        {
-            "id": "brainrot-002",
-            "title": "Katzen übernehmen das Büro",
-            "niche": "animals",
-            "hook": "Die Katze hat heute den Statusbericht geschrieben",
-            "why_now": "Tier-Meme mit Büro-Kontext sind extrem starke Shorts-Motive.",
-            "format": "Schnelle Bildwechsel, Text Overlay, absurd",
-            "tone": "süß + absurd",
-            "trend_score": 90,
-        },
-        {
-            "id": "brainrot-003",
-            "title": "Bester Freund = falscher Roboter",
-            "niche": "tech-humor",
-            "hook": "Der Roboter ist immer online, aber nie ehrlich",
-            "why_now": "KI-Humor und Roboter-Meme ziehen konstant Aufmerksamkeit an.",
-            "format": "Text-Overlay + Screaming Cuts",
-            "tone": "dystopisch, humorvoll",
-            "trend_score": 91,
-        },
-        {
-            "id": "brainrot-004",
-            "title": "Frustrierter Manager 2.0",
-            "niche": "office-humor",
-            "hook": "Das Meeting war kurz - aber der Stress blieb länger",
-            "why_now": "Office-Memes bleiben hoch, wenn sie mit absurdem Twist kombiniert sind.",
-            "format": "Jump-Cut, aggressive Sounds, schnelle Wiederholungen",
-            "tone": "chaotisch, ernst + absurd",
-            "trend_score": 88,
-        },
-        {
-            "id": "brainrot-005",
-            "title": "Mein PC hat besseres Timing als ich",
-            "niche": "tech-life",
-            "hook": "Der Computer reagiert schneller als ich bei Entscheidungen",
-            "why_now": "Alltag + Technik + Frust ist ein sehr starkes Content-Muster.",
-            "format": "Quick cuts, captions, starker Punchline",
-            "tone": "realistisch, humorvoll",
-            "trend_score": 87,
-        },
+def generate_video_plan(trend: Dict[str, Any]) -> Dict[str, Any]:
+    video_id = str(uuid.uuid4())[:8]
+
+    script = (
+        f"{trend['hook']}\n"
+        "\n"
+        "1. Blick auf die Kamera: 'Ich wollte nur schnell arbeiten.'\n"
+        "2. Schnitt: Das System zeigt die absurd-realistische Katastrophe.\n"
+        "3. Text-Overlay: 'Dann kam der echte Plot twist.'\n"
+        "4. Auflösung: Der digitale Charakter ist schlimmer als der Mensch.\n"
+        "5. Finaler Hook: 'Warum funktioniert alles außer mir?'"
+    )
+
+    captions = [
+        "Ich wollte nur kurz arbeiten",
+        "Dann wurde alles absurd",
+        "Der Plot twist: Es war schon immer so",
+        "Warum bin ich hier wieder?",
     ]
 
+    workflow_steps = [
+        {"step": "trend_scan", "title": "Trend erkannt", "status": "done", "detail": f"Trend: {trend['title']}"},
+        {"step": "concept", "title": "Konzept erstellt", "status": "done", "detail": "Humoristischer Hook mit Tech-Absurdismus"},
+        {"step": "script", "title": "Script geschrieben", "status": "done", "detail": "Kurzer, klarer Hook mit finalem Punchline"},
+        {"step": "voice", "title": "Voice-over vorbereitet", "status": "waiting", "detail": "ElevenLabs oder alternative Stimme"},
+        {"step": "render", "title": "Video rendern", "status": "waiting", "detail": "Bilder + Cuts + Text-Overlays"},
+        {"step": "review", "title": "Review vor Upload", "status": "waiting", "detail": "Mensch prüft Qualität und Ton"},
+        {"step": "upload", "title": "Upload bestätigen", "status": "waiting", "detail": "Nur nach manueller Freigabe"},
+    ]
 
-def find_trend(trend_id):
-    for trend in get_trends():
-        if trend["id"] == trend_id:
-            return trend
-    return get_trends()[0]
+    return {
+        "id": video_id,
+        "created_at": datetime.utcnow().isoformat() + "Z",
+        "title": f"{trend['title']} – AI Short",
+        "niche": trend["niche"],
+        "trend_id": trend["id"],
+        "hook": trend["hook"],
+        "why_now": trend["why_now"],
+        "format": trend["format"],
+        "script": script,
+        "voice_over": "Erzählung in schnellem, energiegeladenem Stil ohne zu viel Text am Bildschirm.",
+        "captions": captions,
+        "shot_plan": [
+            "Startbild mit Kamera-Nahe + Hook",
+            "Schneller Cut zu digitalem Problem",
+            "Funny repetition / Text Overlay",
+            "Finale Überraschung mit 'Plot Twist'",
+        ],
+        "workflow": workflow_steps,
+        "approved": False,
+        "status": "queued",
+    }
