@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Shorts AI System</title>
+    <style>
+      :root {
+        --bg: #08111f;
+        --panel: #101b2d;
+        --panel-alt: #13233e;
+        --accent: #5be4ff;
+        --accent-2: #7bffb2;
+        --warning: #ffd166;
+        --danger: #ff6b6b;
+        --text: #ecf5ff;
+        --muted: #a9bfd8;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(160deg, #07111d, #0e1d33 45%, #08111f);
+        color: var(--text);
+      }
+
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 20px 60px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+      }
+
+      .brand {
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+      }
+
+      .btn:hover { transform: translateY(-1px); }
+      .btn.primary {
+        background: linear-gradient(135deg, #5be4ff, #7bffb2);
+        color: #04131c;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1.5fr;
+        gap: 24px;
+      }
+
+      .panel {
+        background: rgba(16, 27, 45, 0.9);
+        border: 1px solid rgba(91, 228, 255, 0.22);
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+      }
+
+      .trend-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .trend-card {
+        background: rgba(19, 35, 62, 0.8);
+        border: 1px solid rgba(123, 255, 178, 0.2);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .trend-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.1rem;
+      }
+
+      .meta {
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-bottom: 10px;
+      }
+
+      .small-text {
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .inline-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .badge {
+        background: rgba(91, 228, 255, 0.15);
+        border: 1px solid rgba(91, 228, 255, 0.25);
+        border-radius: 999px;
+        padding: 6px 10px;
+        color: var(--accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .workflow-box {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .video-card {
+        background: rgba(9, 19, 31, 0.75);
+        border: 1px solid rgba(255, 209, 102, 0.25);
+        border-radius: 14px;
+        padding: 18px;
+      }
+
+      .video-card h2 {
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .script-box {
+        background: rgba(14, 28, 43, 0.9);
+        border-radius: 12px;
+        padding: 14px;
+        color: #dfeeff;
+        white-space: pre-wrap;
+        line-height: 1.6;
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(180px, 1fr));
+        gap: 12px;
+      }
+
+      .step {
+        background: rgba(27, 47, 74, 0.9);
+        border: 1px solid rgba(123, 255, 178, 0.18);
+        border-radius: 12px;
+        padding: 10px 12px;
+      }
+
+      .step .name {
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .status {
+        display: inline-block;
+        font-size: 0.72rem;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(91, 228, 255, 0.14);
+        color: var(--accent);
+      }
+
+      .status.waiting {
+        background: rgba(255, 209, 102, 0.12);
+        color: var(--warning);
+      }
+
+      .status.approved {
+        background: rgba(123, 255, 178, 0.12);
+        color: var(--accent-2);
+      }
+
+      .section-label {
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 12px;
+      }
+
+      @media (max-width: 900px) {
+        .grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">YouTube Shorts AI System</div>
+        <a href="/workflow3d" class="btn primary">3D-Workflow öffnen</a>
+      </div>
+
+      <div class="grid">
+        <section class="panel">
+          <div class="section-label">Trend-Analyse</div>
+          <div id="trend-list" class="trend-list"></div>
+        </section>
+
+        <section class="panel workflow-box">
+          <div class="section-label">Workflow / Video-Plan</div>
+          <div id="video-output"></div>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      async function loadTrends() {
+        const res = await fetch('/api/trends');
+        const data = await res.json();
+        const list = document.getElementById('trend-list');
+
+        list.innerHTML = data.trends.map((trend) => `
+          <div class="trend-card">
+            <h3>${trend.title}</h3>
+            <div class="meta">${trend.niche} • score ${trend.trend_score}</div>
+            <div class="small-text">${trend.why_now}</div>
+            <div class="inline-row">
+              <span class="badge">${trend.format}</span>
+              <button class="btn primary" data-id="${trend.id}">Erzeugen</button>
+            </div>
+          </div>
+        `).join('');
+
+        list.querySelectorAll('button').forEach((btn) => {
+          btn.addEventListener('click', async () => {
+            const trendId = btn.dataset.id;
+            const res = await fetch('/api/generate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ trend_id: trendId })
+            });
+            const data = await res.json();
+            renderVideo(data.video);
+          });
+        });
+      }
+
+      function renderVideo(video) {
+        const out = document.getElementById('video-output');
+        out.innerHTML = `
+          <div class="video-card">
+            <h2>${video.title}</h2>
+            <div class="inline-row" style="margin-bottom: 12px;">
+              <span class="badge">${video.niche}</span>
+              <span class="status ${video.approved ? 'approved' : 'waiting'}">
+                ${video.approved ? 'Freigegeben' : 'Wartet auf Review'}
+              </span>
+            </div>
+
+            <div class="section-label">Hook</div>
+            <div class="small-text">${video.hook}</div>
+
+            <div class="section-label">Script</div>
+            <div class="script-box">${video.script}</div>
+
+            <div class="section-label" style="margin-top: 18px;">Workflow</div>
+            <div class="steps">
+              ${video.workflow.map(step => `
+                <div class="step">
+                  <div class="name">${step.title}</div>
+                  <div class="status ${step.status === 'done' ? 'approved' : 'waiting'}">${step.status}</div>
+                  <div class="small-text" style="margin-top:8px;">${step.detail}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div style="margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap;">
+              <button class="btn primary" data-action="approve" data-id="${video.id}">Freigeben</button>
+              <button class="btn" data-action="upload" data-id="${video.id}">Upload prüfen</button>
+            </div>
+          </div>
+        `;
+
+        out.querySelector('[data-action="approve"]').addEventListener('click', async () => {
+          const id = out.querySelector('[data-action="approve"]').dataset.id;
+          const res = await fetch('/api/approve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ video_id: id })
+          });
+          const data = await res.json();
+          if (data.ok) renderVideo(data.video);
+        });
+      }
+
+      loadTrends();
+    </script>
+  </body>
+</html>

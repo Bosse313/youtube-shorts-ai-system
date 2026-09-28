@@ -1,0 +1,56 @@
+import uuid
+from datetime import datetime
+
+
+def generate_video_plan(trend):
+    video_id = str(uuid.uuid4())[:8]
+
+    script = (
+        f"{trend['hook']}\n"
+        "\n"
+        "1. Blick auf die Kamera: 'Ich wollte nur schnell arbeiten.'\n"
+        "2. Schnitt: Das System zeigt die absurd-realistische Katastrophe.\n"
+        "3. Text-Overlay: 'Dann kam der echte Plot twist.'\n"
+        "4. Auflösung: Der digitale Charakter ist schlimmer als der Mensch.\n"
+        "5. Finaler Hook: 'Warum funktioniert alles außer mir?'"
+    )
+
+    captions = [
+        "Ich wollte nur kurz arbeiten",
+        "Dann wurde alles absurd",
+        "Der Plot twist: Es war schon immer so",
+        "Warum bin ich hier wieder?",
+    ]
+
+    steps = [
+        {"step": "trend_scan", "title": "Trend erkannt", "status": "done", "detail": f"Trend: {trend['title']}"},
+        {"step": "concept", "title": "Konzept erstellt", "status": "done", "detail": "Humoristischer Hook mit Tech-Absurdismus"},
+        {"step": "script", "title": "Script geschrieben", "status": "done", "detail": "Kurzer, klarer Hook mit finalem Punchline"},
+        {"step": "voice", "title": "Voice-over vorbereitet", "status": "waiting", "detail": "ElevenLabs oder alternative Stimme"},
+        {"step": "render", "title": "Video rendern", "status": "waiting", "detail": "Bilder + Cuts + Text-Overlays"},
+        {"step": "review", "title": "Review vor Upload", "status": "waiting", "detail": "Mensch prüft Qualität und Ton"},
+        {"step": "upload", "title": "Upload bestätigen", "status": "waiting", "detail": "Nur nach manueller Freigabe"},
+    ]
+
+    return {
+        "id": video_id,
+        "created_at": datetime.utcnow().isoformat() + "Z",
+        "title": f"{trend['title']} – AI Short",
+        "niche": trend["niche"],
+        "trend_id": trend["id"],
+        "hook": trend["hook"],
+        "why_now": trend["why_now"],
+        "format": trend["format"],
+        "script": script,
+        "voice_over": "Erzählung in schnellem, energiegeladenem Stil ohne zu viel Text am Bildschirm.",
+        "captions": captions,
+        "shot_plan": [
+            "Startbild mit Kamera-Nahe + Hook",
+            "Schneller Cut zu digitalem Problem",
+            "Funny repetition / Text Overlay",
+            "Finale Überraschung mit 'Plot Twist'",
+        ],
+        "workflow": steps,
+        "approved": False,
+        "status": "queued",
+    }

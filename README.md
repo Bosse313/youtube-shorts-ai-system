@@ -1,139 +1,128 @@
 # 🎬 YouTube Shorts AI System
 
-Ein vollautomatisiertes System zur Erstellung, Bearbeitung und Veröffentlichung von YouTube Shorts mit KI-Stack und 3D-Workflow-Visualisierung.
+Ein lokales Starter-Projekt für ein KI-gestütztes YouTube-Shorts-System mit:
+- Trend-Analyse
+- automatischer Video-Idee und Script-Erzeugung
+- 3D-Workflow-Visualisierung
+- manuelle Freigabe vor dem Upload
+- vollständiger Kontrolle über jeden Schritt
 
-## 🎯 Was dieses System macht
+## Projektziel
 
-- **Ideen generieren** → ChatGPT erstellt automatisch Video-Ideen
-- **Scripts schreiben** → Claude schreibt das Drehbuch
-- **Stimme generieren** → ElevenLabs erstellt eine professionelle Stimme
-- **Video erzeugen** → Runway/Pika erstellt automatisch Videos
-- **Bearbeiten** → CapCut/Descript optimiert das Video
-- **Hochladen** → YouTube API veröffentlicht automatisch
-- **Visualisieren** → 3D-Dashboard zeigt den gesamten Prozess live
+Dieses Projekt ist bewusst als transparente, kontrollierbare Grundversion gebaut. Du bekommst nicht nur ein "Black-Box"-System, sondern ein Dashboard, in dem du jede Phase nachvollziehen, prüfen und bei Bedarf anpassen kannst.
 
-## 📊 3D-Workflow (Das Herzstück!)
+## Kernprinzip
 
-Das System hat ein interaktives 3D-Modell, das zeigt:
-- Jeden Schritt des Workflow-Prozesses
-- Den Datenfluss zwischen den KI-Tools
-- Live-Status jeder laufenden Video-Erstellung
-- Erfolgs- und Fehlerrate
+- Das System schaut sich Trends an und erkennt Muster
+- Basierend auf einem Trend wird ein Video-Konzept erstellt
+- Ein Script und eine Stimme werden vorbereitet
+- Der Workflow wird in einer 3D-Ansicht sichtbar gemacht
+- Du prüfst alles und genehmigst erst dann den Upload
 
-```
-[Ideenfindung] → [Script] → [Stimme] → [Video] → [Bearbeitung] → [Upload] → [YouTube]
-     ↓            ↓         ↓        ↓         ↓              ↓         ↓
-   ChatGPT      Claude   ElevenLabs Runway  CapCut      YouTube API  Public
-```
+## Verzeichnisstruktur
 
-## 🛠️ Komponenten
-
-### Backend (Python)
-- **Orchestrator**: Verwaltet den gesamten Workflow
-- **KI-Handler**: Verbindungen zu OpenAI, ElevenLabs, Runway, YouTube
-- **Scheduler**: Plant automatisch neue Videos
-- **Database**: Speichert alle Videos und Metadaten
-
-### Frontend (React + 3D)
-- **3D-Visualisierung**: Interaktives Workflow-Modell
-- **Dashboard**: Statistiken und Live-Monitor
-- **Control Panel**: Einstellen von Einstellungen und Parametern
-
-## 🚀 Quick Start
-
-```bash
-# 1. Repository klonen
-git clone https://github.com/Bosse313/youtube-shorts-ai-system.git
-cd youtube-shorts-ai-system
-
-# 2. Dependencies installieren
-pip install -r requirements.txt
-npm install
-
-# 3. API-Keys hinzufügen (siehe .env.example)
-cp .env.example .env
-# Bearbeite .env mit deinen API-Keys
-
-# 4. System starten
-python backend/main.py
-npm run dev
-
-# 5. Dashboard öffnen
-# http://localhost:3000
-```
-
-## 📋 API-Keys, die du brauchst
-
-1. **OpenAI** (ChatGPT/GPT-4) - Ideenfindung & Scripts
-2. **Anthropic** (Claude) - Alternative für Scripts
-3. **ElevenLabs** - Sprachgenerierung
-4. **Runway** oder **Pika** - Video-Generierung
-5. **YouTube Data API** - Automatisches Hochladen
-6. **CapCut API** (optional) - Video-Bearbeitung
-
-> Keine Sorge! Im Setup-Guide erklären wir, wie du alle Keys kostenlos oder günstig bekommst.
-
-## 📁 Ordnerstruktur
-
-```
+```text
 youtube-shorts-ai-system/
 ├── backend/
-│   ├── main.py                 # Hauptserver
-│   ├── config.py               # Konfiguration
-│   ├── orchestrator.py         # Workflow-Manager
-│   ├── handlers/
-│   │   ├── openai_handler.py   # ChatGPT Integration
-│   │   ├── claude_handler.py   # Claude Integration
-│   │   ├── elevenlabs_handler.py
-│   │   ├── runway_handler.py
-│   │   └── youtube_handler.py
-│   ├── models/
-│   │   ├── project.py
-│   │   └── video.py
-│   └── database/
-│       └── db.py
+│   ├── main.py
+│   ├── trending_analyzer.py
+│   └── video_generator.py
 ├── frontend/
-│   ├── components/
-│   │   ├── Workflow3D.jsx      # 3D-Visualisierung
-│   │   ├── Dashboard.jsx
-│   │   └── ControlPanel.jsx
-│   └── App.jsx
-├── docs/
-│   ├── SETUP.md               # Ausführliche Anleitung
-│   ├── API_KEYS.md            # Wie man Keys bekommt
-│   └── WORKFLOW.md            # So funktioniert es
+│   ├── index.html
+│   └── workflow3d.html
 ├── .env.example
-├── requirements.txt           # Python Packages
-└── package.json              # JavaScript Packages
+├── README.md
+├── requirements.txt
+└── start.sh
 ```
 
-## 📖 Dokumentation
+## Voraussetzungen
 
-- **[SETUP.md](docs/SETUP.md)** - Schritt-für-Schritt Installation
-- **[API_KEYS.md](docs/API_KEYS.md)** - Wie man Keys bekommt
-- **[WORKFLOW.md](docs/WORKFLOW.md)** - Wie das System funktioniert
-- **[FAQ.md](docs/FAQ.md)** - Häufige Fragen
+- Python 3.10+
+- Git
+- Visual Studio Code (optional, aber empfohlen)
 
-## 💰 Ziel
+## Installation
 
-**5.000 € Gewinn pro Monat** durch automatisierte YouTube Shorts
+1. Repository klonen
 
-Typisches Einkommen:
-- YouTube Ads: 1.000-3.000 €/Monat
-- Sponsored Content: 2.000-5.000 €/Monat
-- Affiliate Links: 500-1.000 €/Monat
+```bash
+git clone https://github.com/Bosse313/youtube-shorts-ai-system.git
+cd youtube-shorts-ai-system
+```
 
-## ⚖️ Wichtige Hinweise
+2. Abhängigkeiten installieren
 
-- ✅ Alle generierten Videos müssen lizenziert sein
-- ✅ YouTube verbietet 100% KI-generierte Inhalte ohne Disclosure
-- ✅ Du musst die Nische und Audience selbst wählen
-- ✅ Qualitätskontrolle ist wichtig (nicht alles Auto-Upload!)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-## 🤝 Support
+3. Umgebungsvariablen anlegen
 
-Bei Fragen schreib ein Issue oder schau in die Docs!
+```bash
+cp .env.example .env
+```
+
+4. Starten
+
+```bash
+bash start.sh
+```
+
+Dann öffnest du im Browser:
+- http://localhost:5000
+- http://localhost:5000/workflow3d
+
+## So funktioniert das System
+
+### 1) Trend-Analyse
+Das System liefert Beispiel-Trends, die du mit deinen eigenen aktuellen Nischen, Hashtags oder Ideen erweitern kannst.
+
+### 2) Workflow-Erzeugen
+Aus einem ausgewählten Trend wird automatisch ein Video-Plan erzeugt, inklusive:
+- Titel
+- Hook
+- Script
+- Voice-over
+- Shot-Plan
+- Bearbeitungs-Schritte
+- Freigabe-Status
+
+### 3) 3D-Visualisierung
+Auf der 3D-Seite siehst du die einzelnen Zustände des Workflows als Karten, die in einer räumlichen Darstellung angezeigt werden.
+
+### 4) Menschliche Kontrolle
+Du hast volle Kontrolle:
+- Trends prüfen
+- Script lesen
+- Voice-over anpassen
+- Video vor Upload freigeben oder ablehnen
+
+## Wichtige Hinweise
+
+- Dies ist ein lokaler Starter-Workflow, keine komplette KI-Produktionspipeline mit echten API-Uploads
+- Für echte Videos müsstest du später echte APIs wie OpenAI, ElevenLabs, Runway oder YouTube verbinden
+- Du kannst dieses Projekt nach Bedarf erweitern und genau dort steuern, wo du Kontrolle brauchst
+
+## Nächste Erweiterungen
+
+- echte OpenAI-Integration
+- echte ElevenLabs-TTS-Integration
+- echte Video-Generierung per Runway/Pika
+- echte YouTube-Upload-API
+- Vorschau-Funktion mit FFmpeg
+- automatische Scheduler-Tasks
+
+## Datenschutz und Kontrolle
+
+Das System ist bewusst so aufgebaut, dass du in jedem Schritt die Transparenz behältst. Du musst nichts blind akzeptieren.
 
 ---
 
-**Viel Erfolg! 🚀**
+Wenn du möchtest, kann ich als Nächstes eine zweite Stufe bauen:
+- echte OpenAI-API-Integration
+- echte TTS-Integration
+- echte YouTube-Upload-Funktionen
+- ein größeres Dashboard mit Automatisierung und Filterung
