@@ -1,1 +1,1 @@
-"""Backend package for the YouTube Shorts AI workflow."""
+"""Backend package for YouTube Shorts AI workflow."""

@@ -1,8 +1,15 @@
-from flask import Flask, jsonify, request, send_from_directory
+from __future__ import annotations
+
 from pathlib import Path
 
-from backend.trending_analyzer import find_trend, get_trends
-from backend.video_generator import generate_video_plan
+from flask import Flask, jsonify, request, send_from_directory
+
+try:
+    from .trending_analyzer import find_trend, get_trends
+    from .video_generator import generate_video_plan
+except ImportError:
+    from trending_analyzer import find_trend, get_trends
+    from video_generator import generate_video_plan
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = ROOT_DIR / "frontend"
